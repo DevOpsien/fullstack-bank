@@ -8,7 +8,7 @@ pipeline {
     }
     
     environment{
-        SCANNER_HOME= tool 'scanner'
+        SCANNER_HOME= tool 'sonar'
     }
     
     stages {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('OWASP FS SCAN') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./app/backend --disableYarnAudit --disableNodeAudit', odcInstallation: 'sonar-scanner'
+                dependencyCheck additionalArguments: '--scan ./app/backend --disableYarnAudit --disableNodeAudit', odcInstallation: 'sonar'
                     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }    
