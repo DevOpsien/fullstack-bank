@@ -8,7 +8,7 @@ pipeline {
     }
     
     environment{
-        SCANNER_HOME= tool 'scan'
+        SCANNER_HOME= tool 'scanner'
     }
     
     stages {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('OWASP FS SCAN') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'scan'
+                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'scanner'
                     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
