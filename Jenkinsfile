@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/jaiswaladi246/fullstack-bank.git'
+                git branch: 'main', url: 'https://github.com/DevOpsien/fullstack-bank.git'
             }
         }
         
@@ -33,7 +33,7 @@ pipeline {
         
         stage('SONARQUBE ANALYSIS') {
             steps {
-                withSonarQubeEnv('sonar') {
+                withSonarQubeEnv('sonarqube') {
                     sh " $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Bank -Dsonar.projectKey=Bank "
                 }
             }
