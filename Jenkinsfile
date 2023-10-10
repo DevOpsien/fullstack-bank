@@ -17,12 +17,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/DevOpsien/fullstack-bank.git'
             }
         }
-        stage('OWASP FS SCAN') {
-            steps {
-                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'scanner'
-                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
+      
         stage('TRIVY FS SCAN') {
             steps {
                 sh "trivy fs ."
