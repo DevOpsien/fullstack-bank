@@ -21,6 +21,8 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '--scan ./app/backend --disableYarnAudit --disableNodeAudit', odcInstallation: 'sonar'
                     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
             }
         }    
 
