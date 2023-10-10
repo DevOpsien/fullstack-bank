@@ -18,6 +18,12 @@ pipeline {
             }
         }
         
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./app/backend --disableYarnAudit --disableNodeAudit', odcInstallation: 'sonar-scanner'
+                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
         
         stage('TRIVY FS SCAN') {
             steps {
