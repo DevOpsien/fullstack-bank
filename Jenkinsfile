@@ -57,7 +57,11 @@ pipeline {
         
         stage('Deploy to Conatiner') {
             steps {
-                sh "docker compose up -d "
+                 dir('/var/lib/jenkins/workspace/first_project/app/') {
+                    sh "docker compose up -d "
+                }
+                
+                
             }
         }
     }
